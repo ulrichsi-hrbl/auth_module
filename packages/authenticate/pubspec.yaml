@@ -13,6 +13,7 @@ dependencies:
   webview_flutter: ^4.4.1
   dio: ^5.3.3
   dartz: ^0.10.1
+  flutter_riverpod: ^2.4.5
 
 dev_dependencies:
   flutter_test:
