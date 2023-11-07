@@ -3,6 +3,7 @@ import 'package:authenticate/widgets/forgot_password_panel.dart';
 import 'package:authenticate/widgets/language_picker_panel.dart';
 import 'package:authenticate/widgets/login_panel.dart';
 import 'package:authenticate/widgets/terms_privacy_panel.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Authenticate extends StatefulWidget {
@@ -15,15 +16,17 @@ class Authenticate extends StatefulWidget {
 class _AuthenticateState extends State<Authenticate> {
   @override
   Widget build(BuildContext context) {
+    const String imagePath = kIsWeb
+        ? 'images/loginHeader.png'
+        : 'packages/authenticate/assets/images/loginHeader.png';
+
     return CustomScrollView(
       slivers: <Widget>[
         SliverAppBar(
           backgroundColor: Colors.green,
           expandedHeight: 200.0,
           flexibleSpace: FlexibleSpaceBar(
-            background: Image.asset(
-                'packages/authenticate/assets/images/loginHeader.png',
-                fit: BoxFit.cover),
+            background: Image.asset(imagePath, fit: BoxFit.cover),
           ),
         ),
         SliverList(
