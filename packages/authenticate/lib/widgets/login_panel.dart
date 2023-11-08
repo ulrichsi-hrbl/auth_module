@@ -42,6 +42,9 @@ class _LoginPanelState extends ConsumerState<LoginPanel> {
         ),
         Text('Login To Your Account',
             style: Theme.of(context).textTheme.headlineLarge),
+        const SizedBox(
+          height: 20,
+        ),
         SizedBox(
           width: 350,
           height: 80,
@@ -73,7 +76,20 @@ class _LoginPanelState extends ConsumerState<LoginPanel> {
             ),
           ),
         ),
-        Text('TODO: login button'),
+        SizedBox(
+          width: 350,
+          height: 40,
+          child: ElevatedButton(
+            onPressed: () {},
+            style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll<Color>(Color.fromARGB(
+              255,
+              120,
+              190,
+              32,
+            ))),
+            child: const Text("Login"),
+          ),
+        ),
         const SizedBox(
           height: 20,
         ),
