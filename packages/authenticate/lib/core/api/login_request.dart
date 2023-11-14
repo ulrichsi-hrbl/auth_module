@@ -8,7 +8,7 @@ class LoginRequest {
       'client_secret':
           'QXBwUHJvZE5DWENSYXN0ZGZzamdmZ2Zhc2pnZmdmc2tkdWZnZHN1a2Zoc3VkZ2ZoZg==',
       'locale': 'en_US',
-      'email': email,
+      'username': email,
       'password': password,
     };
   }

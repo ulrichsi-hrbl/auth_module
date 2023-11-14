@@ -22,7 +22,7 @@ class DioAuthRepository implements AuthRepository {
   @override
   Future login(Map<String, Object> credentials) async {
     final Response response =
-        await _dio.post(Endpoints.loginURL, data: jsonEncode(credentials));
+        await _dio.post(Endpoints.loginURL, data: credentials);
     debugPrint('response $response');
     return response.data;
   }
