@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:authenticate/core/api/login_request.dart';
+import 'package:authenticate/features/user/repositories/auth_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -33,6 +37,7 @@ class _LoginPanelState extends ConsumerState<LoginPanel> {
 
   @override
   Widget build(BuildContext context) {
+    print(Platform.operatingSystem);
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -80,8 +85,25 @@ class _LoginPanelState extends ConsumerState<LoginPanel> {
           width: 350,
           height: 40,
           child: ElevatedButton(
-            onPressed: () {},
-            style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll<Color>(Color.fromARGB(
+            onPressed: () {
+              final req = LoginRequest.getRequestObject(email.text, password.text);
+              debugPrint('LoginRequest $req');
+              ref.read(userRepositoryProvider).login(req);
+              // .then(
+              //   (res) => {
+              //     res.fold(
+              //       (l) => {
+              //         showSnackbar(context, l),
+              //       },
+              //       (r) => {
+              //         Navigator.pushReplacementNamed(context, 'Home'),
+              //       },
+              //     ),
+              //   },
+              // );
+            },
+            style: const ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll<Color>(Color.fromARGB(
               255,
               120,
               190,
