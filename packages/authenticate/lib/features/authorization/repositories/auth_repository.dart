@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:authenticate/core/api/endpoints.dart';
 import 'package:authenticate/core/api/headers.dart';
+import 'package:authenticate/core/api/http_client/dio_auth_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dio/dio.dart';
@@ -11,23 +12,20 @@ abstract class AuthRepository {
 }
 
 class DioAuthRepository implements AuthRepository {
-  late Dio _dio;
+  final Dio dioClient;
 
-  DioAuthRepository() {
-    _dio = Dio(
-      BaseOptions(baseUrl: Endpoints.baseURL, headers: AuthHeaders),
-    );
-  }
-
+  DioAuthRepository({required this.dioClient});
+  
   @override
   Future login(Map<String, Object> credentials) async {
     final Response response =
-        await _dio.post(Endpoints.loginURL, data: credentials);
+        await dioClient.post(Endpoints.loginURL, data: credentials);
     debugPrint('response $response');
     return response.data;
   }
 }
 
 final userRepositoryProvider = Provider<AuthRepository>((ref) {
-  return DioAuthRepository();
+  final dio = ref.watch(dioProvider);
+  return DioAuthRepository(dioClient: dio);
 });
