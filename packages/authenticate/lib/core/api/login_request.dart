@@ -1,15 +1,17 @@
-import 'package:flutter/cupertino.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class LoginRequest {
-  static Map<String, Object> getRequestObject(email, password) {
-    return {
-      'grant_type': 'password',
-      'client_id': '58',
-      'client_secret':
-          'QXBwUHJvZE5DWENSYXN0ZGZzamdmZ2Zhc2pnZmdmc2tkdWZnZHN1a2Zoc3VkZ2ZoZg==',
-      'locale': 'en_US',
-      'username': email,
-      'password': password,
-    };
-  }
+part 'login_request.freezed.dart';
+
+@freezed
+class LoginRequest with _$LoginRequest {
+  const factory LoginRequest({
+    required String username,
+    required String password,
+    @Default('password') String grantType,
+    @Default('58') String clientId,
+    @Default('en_US') String locale,
+    @Default(
+        'QXBwUHJvZE5DWENSYXN0ZGZzamdmZ2Zhc2pnZmdmc2tkdWZnZHN1a2Zoc3VkZ2ZoZg==')
+    String clientSecret,
+  }) = _LoginRequest;
 }
