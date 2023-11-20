@@ -5,17 +5,13 @@ import 'package:authenticate/widgets/login_panel.dart';
 import 'package:authenticate/widgets/terms_privacy_panel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Authenticate extends StatefulWidget {
+class Authenticate extends ConsumerWidget {
   const Authenticate({super.key});
 
   @override
-  State<Authenticate> createState() => _AuthenticateState();
-}
-
-class _AuthenticateState extends State<Authenticate> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     const String imagePath = kIsWeb
         ? 'images/loginHeader.png'
         : 'packages/authenticate/assets/images/loginHeader.png';
@@ -33,11 +29,11 @@ class _AuthenticateState extends State<Authenticate> {
           delegate: SliverChildListDelegate(
             [
               LoginPanel(),
-              ForgotPasswordPanel(),
-              CreateAccountPanel(),
-              Container(color: Colors.black26, height: 100),
-              LanguagePickerPanel(),
-              TermsOfUsePrivacyPanel(),
+              // ForgotPasswordPanel(),
+              // CreateAccountPanel(),
+              // Container(color: Colors.black26, height: 100),
+              // LanguagePickerPanel(),
+              // TermsOfUsePrivacyPanel(),
             ],
           ),
         ),
