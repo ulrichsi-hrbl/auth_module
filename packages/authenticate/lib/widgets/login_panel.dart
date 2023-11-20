@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:authenticate/core/api/login_request.dart';
+import 'package:authenticate/features/authorization/controller/authentication_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -86,22 +87,10 @@ class _LoginPanelState extends ConsumerState<LoginPanel> {
           width: 350,
           height: 40,
           child: ElevatedButton(
-            onPressed: () {
-              final req = LoginRequest.getRequestObject(email.text, password.text);
-              debugPrint('LoginRequest $req');
-              ref.read(userRepositoryProvider).login(req);
-              // .then(
-              //   (res) => {
-              //     res.fold(
-              //       (l) => {
-              //         showSnackbar(context, l),
-              //       },
-              //       (r) => {
-              //         Navigator.pushReplacementNamed(context, 'Home'),
-              //       },
-              //     ),
-              //   },
-              // );
+            onPressed: () async {
+              await ref
+                  .read(authorizationControllerProvider.notifier)
+                  .login(email.text, password.text);
             },
             style: const ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll<Color>(Color.fromARGB(
@@ -113,9 +102,11 @@ class _LoginPanelState extends ConsumerState<LoginPanel> {
             child: const Text("Login"),
           ),
         ),
-        const SizedBox(
-          height: 20,
-        ),
+        Consumer(builder: (context, ref, _) {
+          final userState = ref.watch(authorizationControllerProvider);
+          debugPrint('LOGIN ${userState.toString()}');
+          return Container();
+        })
       ],
     );
   }

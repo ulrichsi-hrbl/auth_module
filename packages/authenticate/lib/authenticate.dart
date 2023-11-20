@@ -28,7 +28,7 @@ class Authenticate extends ConsumerWidget {
         SliverList(
           delegate: SliverChildListDelegate(
             [
-              LoginPanel(),
+              const LoginPanel(),
               // ForgotPasswordPanel(),
               // CreateAccountPanel(),
               // Container(color: Colors.black26, height: 100),
