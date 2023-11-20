@@ -7,9 +7,9 @@ part 'user_state.freezed.dart';
 @freezed
 class UserState with _$UserState {
   factory UserState({
-    required String userName,
-    required String password,
-    required AsyncValue<Authorization> authorization,
+     String? userName,
+     String? password,
+     AsyncValue<Authorization>? authorization,
   }) = _UserState;
 
 }

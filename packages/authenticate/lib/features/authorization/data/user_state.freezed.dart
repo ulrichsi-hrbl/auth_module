@@ -16,9 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UserState {
-  String get userName => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
-  AsyncValue<Authorization> get authorization =>
+  String? get userName => throw _privateConstructorUsedError;
+  String? get password => throw _privateConstructorUsedError;
+  AsyncValue<Authorization>? get authorization =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -32,9 +32,9 @@ abstract class $UserStateCopyWith<$Res> {
       _$UserStateCopyWithImpl<$Res, UserState>;
   @useResult
   $Res call(
-      {String userName,
-      String password,
-      AsyncValue<Authorization> authorization});
+      {String? userName,
+      String? password,
+      AsyncValue<Authorization>? authorization});
 }
 
 /// @nodoc
@@ -50,23 +50,23 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userName = null,
-    Object? password = null,
-    Object? authorization = null,
+    Object? userName = freezed,
+    Object? password = freezed,
+    Object? authorization = freezed,
   }) {
     return _then(_value.copyWith(
-      userName: null == userName
+      userName: freezed == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
+              as String?,
+      password: freezed == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorization: null == authorization
+              as String?,
+      authorization: freezed == authorization
           ? _value.authorization
           : authorization // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<Authorization>,
+              as AsyncValue<Authorization>?,
     ) as $Val);
   }
 }
@@ -80,9 +80,9 @@ abstract class _$$UserStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String userName,
-      String password,
-      AsyncValue<Authorization> authorization});
+      {String? userName,
+      String? password,
+      AsyncValue<Authorization>? authorization});
 }
 
 /// @nodoc
@@ -96,23 +96,23 @@ class __$$UserStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userName = null,
-    Object? password = null,
-    Object? authorization = null,
+    Object? userName = freezed,
+    Object? password = freezed,
+    Object? authorization = freezed,
   }) {
     return _then(_$UserStateImpl(
-      userName: null == userName
+      userName: freezed == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
+              as String?,
+      password: freezed == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorization: null == authorization
+              as String?,
+      authorization: freezed == authorization
           ? _value.authorization
           : authorization // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<Authorization>,
+              as AsyncValue<Authorization>?,
     ));
   }
 }
@@ -120,17 +120,14 @@ class __$$UserStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UserStateImpl implements _UserState {
-  _$UserStateImpl(
-      {required this.userName,
-      required this.password,
-      required this.authorization});
+  _$UserStateImpl({this.userName, this.password, this.authorization});
 
   @override
-  final String userName;
+  final String? userName;
   @override
-  final String password;
+  final String? password;
   @override
-  final AsyncValue<Authorization> authorization;
+  final AsyncValue<Authorization>? authorization;
 
   @override
   String toString() {
@@ -163,17 +160,16 @@ class _$UserStateImpl implements _UserState {
 
 abstract class _UserState implements UserState {
   factory _UserState(
-          {required final String userName,
-          required final String password,
-          required final AsyncValue<Authorization> authorization}) =
-      _$UserStateImpl;
+      {final String? userName,
+      final String? password,
+      final AsyncValue<Authorization>? authorization}) = _$UserStateImpl;
 
   @override
-  String get userName;
+  String? get userName;
   @override
-  String get password;
+  String? get password;
   @override
-  AsyncValue<Authorization> get authorization;
+  AsyncValue<Authorization>? get authorization;
   @override
   @JsonKey(ignore: true)
   _$$UserStateImplCopyWith<_$UserStateImpl> get copyWith =>
