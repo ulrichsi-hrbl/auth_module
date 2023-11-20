@@ -1,9 +1,10 @@
 import 'dart:io';
 
 import 'package:authenticate/core/api/login_request.dart';
-import 'package:authenticate/features/user/repositories/auth_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../features/authorization/repositories/auth_repository.dart';
 
 class LoginPanel extends ConsumerStatefulWidget {
   const LoginPanel({super.key});
