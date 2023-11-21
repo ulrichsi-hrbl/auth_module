@@ -30,7 +30,7 @@ class DioAuthRepository implements AuthRepository {
       'username': req.username,
       'password': req.password,
     });
-    debugPrint('response $response');
+    // debugPrint('response $response');
     final authorization = Authorization.fromJson(response.data);
     return UserState(
         userName: req.username,

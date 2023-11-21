@@ -5,7 +5,7 @@ class TermsOfUsePrivacyPanel extends StatelessWidget {
   const TermsOfUsePrivacyPanel({super.key});
 
   void handleTermsOfUseTap(BuildContext context) {
-    debugPrint('handleTermsOfUseTap');
+    // debugPrint('handleTermsOfUseTap');
     showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
@@ -29,7 +29,7 @@ class TermsOfUsePrivacyPanel extends StatelessWidget {
   }
 
   void handlePrivacyPolicyTap(BuildContext context) {
-    debugPrint('handlePrivacyPolicyTap');
+    // debugPrint('handlePrivacyPolicyTap');
     showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
