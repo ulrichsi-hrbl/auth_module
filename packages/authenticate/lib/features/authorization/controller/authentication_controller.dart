@@ -5,7 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class AuthorizationController extends StateNotifier<UserState> {
   final AuthorizationService _authorizationService;
 
-  AuthorizationController(UserState state, this._authorizationService) : super(state);
+  AuthorizationController(UserState state, this._authorizationService)
+      : super(state);
 
   Future<void>? login(String username, String password) async {
     state = state.copyWith(userName: username);
@@ -15,11 +16,20 @@ class AuthorizationController extends StateNotifier<UserState> {
     state = state.copyWith(authorization: result.authorization);
   }
 
-  Future<void> logout() async{
+  Future<void> logout() async {
     final result = await _authorizationService.logout();
     state = state.copyWith(userName: '');
     state = state.copyWith(password: '');
     state = state.copyWith(authorization: null);
+  }
+
+  Future<void> renewToken() async {
+    if (state.authorization?.value?.accessToken != null) {
+      final result = await _authorizationService
+          .renewToken(state.authorization!.value!.accessToken);
+      //TODO: complete the refresh
+      state = state.copyWith(authorization: result.authorization);
+    }
   }
 }
 

@@ -1,6 +1,7 @@
 import 'package:authenticate/core/api/endpoints.dart';
 import 'package:authenticate/core/api/http_client/dio_auth_client.dart';
 import 'package:authenticate/core/api/login_request.dart';
+import 'package:authenticate/core/api/refresh_token_request.dart';
 import 'package:authenticate/features/authorization/data/authorization.dart';
 import 'package:authenticate/features/authorization/data/user_state.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ import 'package:dio/dio.dart';
 
 abstract class AuthRepository {
   Future<UserState> login(String username, String password);
-
+  Future<UserState> renewToken(String oldAccessToken);
   Future<UserState> logout();
 }
 
@@ -23,7 +24,7 @@ class DioAuthRepository implements AuthRepository {
     final LoginRequest req =
         LoginRequest(username: username, password: password);
     final Response response = await dioClient.post(Endpoints.loginURL, data: {
-      'grant_type': req.password,
+      'grant_type': req.grantType,
       'client_id': req.clientId,
       'client_secret': req.clientSecret,
       'locale': req.locale,
@@ -39,7 +40,21 @@ class DioAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<UserState> logout() {
+  Future<UserState> renewToken(String oldAccessToken) async{
+    final RefreshTokenRequest req =
+    RefreshTokenRequest(refreshToken: oldAccessToken);
+    final Response response = await dioClient.post(Endpoints.loginURL, data: {
+      'grant_type': req.grantType,
+      'client_id': req.clientId,
+      'client_secret': req.clientSecret,
+      'locale': req.locale,
+      'refreshToken':oldAccessToken,
+    });
+    return Future.value(UserState());
+  }
+
+  @override
+  Future<UserState> logout() async{
     return Future.value(UserState());
   }
 }
