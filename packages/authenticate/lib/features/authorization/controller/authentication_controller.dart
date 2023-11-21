@@ -14,6 +14,13 @@ class AuthorizationController extends StateNotifier<UserState> {
     final result = await _authorizationService.login(username, password);
     state = state.copyWith(authorization: result.authorization);
   }
+
+  Future<void> logout() async{
+    final result = await _authorizationService.logout();
+    state = state.copyWith(userName: '');
+    state = state.copyWith(password: '');
+    state = state.copyWith(authorization: null);
+  }
 }
 
 final authorizationControllerProvider =

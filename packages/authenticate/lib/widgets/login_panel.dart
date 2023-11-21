@@ -2,8 +2,10 @@ import 'dart:io';
 
 import 'package:authenticate/core/api/login_request.dart';
 import 'package:authenticate/features/authorization/controller/authentication_controller.dart';
+import 'package:authenticate/features/authorization/data/authorization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 import '../features/authorization/repositories/auth_repository.dart';
 
@@ -39,7 +41,6 @@ class _LoginPanelState extends ConsumerState<LoginPanel> {
 
   @override
   Widget build(BuildContext context) {
-    print(Platform.operatingSystem);
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -88,6 +89,8 @@ class _LoginPanelState extends ConsumerState<LoginPanel> {
           height: 40,
           child: ElevatedButton(
             onPressed: () async {
+              //TODO: remove for better solution. Hacky.
+              FocusScope.of(context).requestFocus(new FocusNode());
               await ref
                   .read(authorizationControllerProvider.notifier)
                   .login(email.text, password.text);
@@ -99,12 +102,60 @@ class _LoginPanelState extends ConsumerState<LoginPanel> {
               190,
               32,
             ))),
-            child: const Text("Login"),
+            child: const Text(
+              "Login",
+              style: TextStyle(color: Colors.white),
+            ),
           ),
         ),
+        const SizedBox(
+          height: 20.0,
+        ),
+        const Divider(),
         Consumer(builder: (context, ref, _) {
-          final userState = ref.watch(authorizationControllerProvider);
-          debugPrint('LOGIN ${userState.toString()}');
+          final authorization =
+              ref.watch(authorizationControllerProvider).authorization;
+          if (authorization?.value != null) {
+            Map<String, dynamic> accessToken =
+                JwtDecoder.decode(authorization!.value!.accessToken);
+            Map<String, dynamic> refreshToken =
+                JwtDecoder.decode(authorization!.value!.refreshToken);
+            Duration remainingTime =
+                JwtDecoder.getRemainingTime(authorization!.value!.accessToken);
+            debugPrint('TOKEN remaining time ${accessToken.toString()}');
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('accessToken remaining time ${remainingTime}'),
+                const SizedBox(
+                  height: 40.0,
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    //TODO: remove for better solution. Hacky.
+                    FocusScope.of(context).requestFocus(new FocusNode());
+                    await ref
+                        .read(authorizationControllerProvider.notifier)
+                        .logout();
+                  },
+                  style: const ButtonStyle(
+                      backgroundColor:
+                          MaterialStatePropertyAll<Color>(Color.fromARGB(
+                    255,
+                    120,
+                    190,
+                    32,
+                  ))),
+                  child: const Text(
+                    "Logout",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
+            );
+          } else {
+            debugPrint('not ready yet');
+          }
           return Container();
         })
       ],
