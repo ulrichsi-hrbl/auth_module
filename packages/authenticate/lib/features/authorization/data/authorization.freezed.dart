@@ -21,13 +21,13 @@ Authorization _$AuthorizationFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Authorization {
   @JsonKey(name: 'token_type')
-  String? get tokenType => throw _privateConstructorUsedError;
+  String get tokenType => throw _privateConstructorUsedError;
   @JsonKey(name: 'expires_in')
-  double? get expiresIn => throw _privateConstructorUsedError;
+  double get expiresIn => throw _privateConstructorUsedError;
   @JsonKey(name: 'access_token')
-  String? get accessToken => throw _privateConstructorUsedError;
+  String get accessToken => throw _privateConstructorUsedError;
   @JsonKey(name: 'refresh_token')
-  String? get refreshToken => throw _privateConstructorUsedError;
+  String get refreshToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,10 +42,10 @@ abstract class $AuthorizationCopyWith<$Res> {
       _$AuthorizationCopyWithImpl<$Res, Authorization>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'token_type') String? tokenType,
-      @JsonKey(name: 'expires_in') double? expiresIn,
-      @JsonKey(name: 'access_token') String? accessToken,
-      @JsonKey(name: 'refresh_token') String? refreshToken});
+      {@JsonKey(name: 'token_type') String tokenType,
+      @JsonKey(name: 'expires_in') double expiresIn,
+      @JsonKey(name: 'access_token') String accessToken,
+      @JsonKey(name: 'refresh_token') String refreshToken});
 }
 
 /// @nodoc
@@ -61,28 +61,28 @@ class _$AuthorizationCopyWithImpl<$Res, $Val extends Authorization>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tokenType = freezed,
-    Object? expiresIn = freezed,
-    Object? accessToken = freezed,
-    Object? refreshToken = freezed,
+    Object? tokenType = null,
+    Object? expiresIn = null,
+    Object? accessToken = null,
+    Object? refreshToken = null,
   }) {
     return _then(_value.copyWith(
-      tokenType: freezed == tokenType
+      tokenType: null == tokenType
           ? _value.tokenType
           : tokenType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      expiresIn: freezed == expiresIn
+              as String,
+      expiresIn: null == expiresIn
           ? _value.expiresIn
           : expiresIn // ignore: cast_nullable_to_non_nullable
-              as double?,
-      accessToken: freezed == accessToken
+              as double,
+      accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
-              as String?,
-      refreshToken: freezed == refreshToken
+              as String,
+      refreshToken: null == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -96,10 +96,10 @@ abstract class _$$AuthorizationImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'token_type') String? tokenType,
-      @JsonKey(name: 'expires_in') double? expiresIn,
-      @JsonKey(name: 'access_token') String? accessToken,
-      @JsonKey(name: 'refresh_token') String? refreshToken});
+      {@JsonKey(name: 'token_type') String tokenType,
+      @JsonKey(name: 'expires_in') double expiresIn,
+      @JsonKey(name: 'access_token') String accessToken,
+      @JsonKey(name: 'refresh_token') String refreshToken});
 }
 
 /// @nodoc
@@ -113,28 +113,28 @@ class __$$AuthorizationImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tokenType = freezed,
-    Object? expiresIn = freezed,
-    Object? accessToken = freezed,
-    Object? refreshToken = freezed,
+    Object? tokenType = null,
+    Object? expiresIn = null,
+    Object? accessToken = null,
+    Object? refreshToken = null,
   }) {
     return _then(_$AuthorizationImpl(
-      tokenType: freezed == tokenType
+      tokenType: null == tokenType
           ? _value.tokenType
           : tokenType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      expiresIn: freezed == expiresIn
+              as String,
+      expiresIn: null == expiresIn
           ? _value.expiresIn
           : expiresIn // ignore: cast_nullable_to_non_nullable
-              as double?,
-      accessToken: freezed == accessToken
+              as double,
+      accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
-              as String?,
-      refreshToken: freezed == refreshToken
+              as String,
+      refreshToken: null == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -143,26 +143,26 @@ class __$$AuthorizationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AuthorizationImpl implements _Authorization {
   const _$AuthorizationImpl(
-      {@JsonKey(name: 'token_type') this.tokenType,
-      @JsonKey(name: 'expires_in') this.expiresIn,
-      @JsonKey(name: 'access_token') this.accessToken,
-      @JsonKey(name: 'refresh_token') this.refreshToken});
+      {@JsonKey(name: 'token_type') required this.tokenType,
+      @JsonKey(name: 'expires_in') required this.expiresIn,
+      @JsonKey(name: 'access_token') required this.accessToken,
+      @JsonKey(name: 'refresh_token') required this.refreshToken});
 
   factory _$AuthorizationImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthorizationImplFromJson(json);
 
   @override
   @JsonKey(name: 'token_type')
-  final String? tokenType;
+  final String tokenType;
   @override
   @JsonKey(name: 'expires_in')
-  final double? expiresIn;
+  final double expiresIn;
   @override
   @JsonKey(name: 'access_token')
-  final String? accessToken;
+  final String accessToken;
   @override
   @JsonKey(name: 'refresh_token')
-  final String? refreshToken;
+  final String refreshToken;
 
   @override
   String toString() {
@@ -205,10 +205,10 @@ class _$AuthorizationImpl implements _Authorization {
 
 abstract class _Authorization implements Authorization {
   const factory _Authorization(
-          {@JsonKey(name: 'token_type') final String? tokenType,
-          @JsonKey(name: 'expires_in') final double? expiresIn,
-          @JsonKey(name: 'access_token') final String? accessToken,
-          @JsonKey(name: 'refresh_token') final String? refreshToken}) =
+          {@JsonKey(name: 'token_type') required final String tokenType,
+          @JsonKey(name: 'expires_in') required final double expiresIn,
+          @JsonKey(name: 'access_token') required final String accessToken,
+          @JsonKey(name: 'refresh_token') required final String refreshToken}) =
       _$AuthorizationImpl;
 
   factory _Authorization.fromJson(Map<String, dynamic> json) =
@@ -216,16 +216,16 @@ abstract class _Authorization implements Authorization {
 
   @override
   @JsonKey(name: 'token_type')
-  String? get tokenType;
+  String get tokenType;
   @override
   @JsonKey(name: 'expires_in')
-  double? get expiresIn;
+  double get expiresIn;
   @override
   @JsonKey(name: 'access_token')
-  String? get accessToken;
+  String get accessToken;
   @override
   @JsonKey(name: 'refresh_token')
-  String? get refreshToken;
+  String get refreshToken;
   @override
   @JsonKey(ignore: true)
   _$$AuthorizationImplCopyWith<_$AuthorizationImpl> get copyWith =>
