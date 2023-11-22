@@ -1,6 +1,6 @@
 import 'dart:io';
 
-Map<String, Object> AuthHeaders = {
+Map<String, Object> authHeaders = {
   'accept': 'application/json, text/plain, */*',
   'content-type': 'application/x-www-form-urlencoded',
   'cache-control': 'no-cache',

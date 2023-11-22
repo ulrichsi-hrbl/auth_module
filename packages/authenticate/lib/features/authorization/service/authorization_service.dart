@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 abstract class AuthorizationService {
   Future<UserState> login(String username, String password);
-  Future<UserState> renewToken(String oldAccessToken);
+  Future<UserState> renewToken(String refreshToken, String userName);
   Future<UserState> logout();
 }
 
@@ -25,8 +25,8 @@ class DioAuthorizationService implements AuthorizationService {
   }
 
   @override
-  Future<UserState> renewToken(String oldAccessToken) async {
-    return _authRepository.renewToken(oldAccessToken);
+  Future<UserState> renewToken(String refreshToken, String userName) async {
+    return _authRepository.renewToken(refreshToken, userName);
   }
 }
 

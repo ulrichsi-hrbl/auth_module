@@ -1,4 +1,5 @@
 import 'package:authenticate/core/api/endpoints.dart';
+import 'package:authenticate/core/api/headers.dart';
 import 'package:authenticate/core/api/http_client/dio_auth_client.dart';
 import 'package:authenticate/core/api/login_request.dart';
 import 'package:authenticate/core/api/refresh_token_request.dart';
@@ -10,7 +11,9 @@ import 'package:dio/dio.dart';
 
 abstract class AuthRepository {
   Future<UserState> login(String username, String password);
-  Future<UserState> renewToken(String oldAccessToken);
+
+  Future<UserState> renewToken(String refreshToken, String userName);
+
   Future<UserState> logout();
 }
 
@@ -40,21 +43,31 @@ class DioAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<UserState> renewToken(String oldAccessToken) async{
+  Future<UserState> renewToken(String refreshToken, String userName) async {
     final RefreshTokenRequest req =
-    RefreshTokenRequest(refreshToken: oldAccessToken);
-    final Response response = await dioClient.post(Endpoints.loginURL, data: {
-      'grant_type': req.grantType,
-      'client_id': req.clientId,
-      'client_secret': req.clientSecret,
-      'locale': req.locale,
-      'refreshToken':oldAccessToken,
-    });
-    return Future.value(UserState());
+        RefreshTokenRequest(refreshToken: refreshToken);
+    final Map<String, Object> dioOptions = {
+      ...authHeaders,
+      'x-correlation-id': 'EngageSplunk-$userName',
+      'x-hluser-token': refreshToken,
+    };
+    final Response response = await dioClient.post(
+      Endpoints.refreshAccessTokenURL,
+      data: {
+        'grant_type': req.grantType,
+        'client_id': req.clientId,
+        'client_secret': req.clientSecret,
+        'refresh_token': refreshToken,
+      },
+      options: Options(headers: dioOptions),
+    );
+    final authorization = Authorization.fromJson(response.data);
+    return UserState(
+        authorization: AsyncValue.data(authorization));
   }
 
   @override
-  Future<UserState> logout() async{
+  Future<UserState> logout() async {
     return Future.value(UserState());
   }
 }
