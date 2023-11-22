@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:authenticate/core/api/login_request.dart';
 import 'package:authenticate/features/authorization/controller/authentication_controller.dart';
 import 'package:authenticate/features/authorization/data/authorization.dart';
+import 'package:authenticate/widgets/logout_button.dart';
+import 'package:authenticate/widgets/renew_token_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -130,34 +132,19 @@ class _LoginPanelState extends ConsumerState<LoginPanel> {
                 const SizedBox(
                   height: 40.0,
                 ),
-                ElevatedButton(
-                  onPressed: () async {
-                    //TODO: remove for better solution. Hacky.
-                    FocusScope.of(context).requestFocus(new FocusNode());
-                    await ref
-                        .read(authorizationControllerProvider.notifier)
-                        .logout();
-                  },
-                  style: const ButtonStyle(
-                      backgroundColor:
-                          MaterialStatePropertyAll<Color>(Color.fromARGB(
-                    255,
-                    120,
-                    190,
-                    32,
-                  ))),
-                  child: const Text(
-                    "Logout",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+                const LogoutButton(),
               ],
             );
           } else {
             debugPrint('not ready yet');
           }
           return Container();
-        })
+        }),
+        const Divider(),
+        const SizedBox(
+          height: 20.0,
+        ),
+        const RenewTokenButton(),
       ],
     );
   }

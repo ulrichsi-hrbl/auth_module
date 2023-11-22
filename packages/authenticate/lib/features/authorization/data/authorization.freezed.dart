@@ -23,7 +23,7 @@ mixin _$Authorization {
   @JsonKey(name: 'token_type')
   String get tokenType => throw _privateConstructorUsedError;
   @JsonKey(name: 'expires_in')
-  double get expiresIn => throw _privateConstructorUsedError;
+  double? get expiresIn => throw _privateConstructorUsedError;
   @JsonKey(name: 'access_token')
   String get accessToken => throw _privateConstructorUsedError;
   @JsonKey(name: 'refresh_token')
@@ -43,7 +43,7 @@ abstract class $AuthorizationCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'token_type') String tokenType,
-      @JsonKey(name: 'expires_in') double expiresIn,
+      @JsonKey(name: 'expires_in') double? expiresIn,
       @JsonKey(name: 'access_token') String accessToken,
       @JsonKey(name: 'refresh_token') String refreshToken});
 }
@@ -62,7 +62,7 @@ class _$AuthorizationCopyWithImpl<$Res, $Val extends Authorization>
   @override
   $Res call({
     Object? tokenType = null,
-    Object? expiresIn = null,
+    Object? expiresIn = freezed,
     Object? accessToken = null,
     Object? refreshToken = null,
   }) {
@@ -71,10 +71,10 @@ class _$AuthorizationCopyWithImpl<$Res, $Val extends Authorization>
           ? _value.tokenType
           : tokenType // ignore: cast_nullable_to_non_nullable
               as String,
-      expiresIn: null == expiresIn
+      expiresIn: freezed == expiresIn
           ? _value.expiresIn
           : expiresIn // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
@@ -97,7 +97,7 @@ abstract class _$$AuthorizationImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'token_type') String tokenType,
-      @JsonKey(name: 'expires_in') double expiresIn,
+      @JsonKey(name: 'expires_in') double? expiresIn,
       @JsonKey(name: 'access_token') String accessToken,
       @JsonKey(name: 'refresh_token') String refreshToken});
 }
@@ -114,7 +114,7 @@ class __$$AuthorizationImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? tokenType = null,
-    Object? expiresIn = null,
+    Object? expiresIn = freezed,
     Object? accessToken = null,
     Object? refreshToken = null,
   }) {
@@ -123,10 +123,10 @@ class __$$AuthorizationImplCopyWithImpl<$Res>
           ? _value.tokenType
           : tokenType // ignore: cast_nullable_to_non_nullable
               as String,
-      expiresIn: null == expiresIn
+      expiresIn: freezed == expiresIn
           ? _value.expiresIn
           : expiresIn // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
@@ -144,7 +144,7 @@ class __$$AuthorizationImplCopyWithImpl<$Res>
 class _$AuthorizationImpl implements _Authorization {
   const _$AuthorizationImpl(
       {@JsonKey(name: 'token_type') required this.tokenType,
-      @JsonKey(name: 'expires_in') required this.expiresIn,
+      @JsonKey(name: 'expires_in') this.expiresIn,
       @JsonKey(name: 'access_token') required this.accessToken,
       @JsonKey(name: 'refresh_token') required this.refreshToken});
 
@@ -156,7 +156,7 @@ class _$AuthorizationImpl implements _Authorization {
   final String tokenType;
   @override
   @JsonKey(name: 'expires_in')
-  final double expiresIn;
+  final double? expiresIn;
   @override
   @JsonKey(name: 'access_token')
   final String accessToken;
@@ -206,7 +206,7 @@ class _$AuthorizationImpl implements _Authorization {
 abstract class _Authorization implements Authorization {
   const factory _Authorization(
           {@JsonKey(name: 'token_type') required final String tokenType,
-          @JsonKey(name: 'expires_in') required final double expiresIn,
+          @JsonKey(name: 'expires_in') final double? expiresIn,
           @JsonKey(name: 'access_token') required final String accessToken,
           @JsonKey(name: 'refresh_token') required final String refreshToken}) =
       _$AuthorizationImpl;
@@ -219,7 +219,7 @@ abstract class _Authorization implements Authorization {
   String get tokenType;
   @override
   @JsonKey(name: 'expires_in')
-  double get expiresIn;
+  double? get expiresIn;
   @override
   @JsonKey(name: 'access_token')
   String get accessToken;

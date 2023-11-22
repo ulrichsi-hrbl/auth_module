@@ -26,8 +26,7 @@ class DioAuthorizationService implements AuthorizationService {
 
   @override
   Future<UserState> renewToken(String oldAccessToken) async {
-    return _authRepository.logout(oldAccessToken);
-
+    return _authRepository.renewToken(oldAccessToken);
   }
 }
 

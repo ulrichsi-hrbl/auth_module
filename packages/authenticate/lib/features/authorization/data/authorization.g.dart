@@ -9,7 +9,7 @@ part of 'authorization.dart';
 _$AuthorizationImpl _$$AuthorizationImplFromJson(Map<String, dynamic> json) =>
     _$AuthorizationImpl(
       tokenType: json['token_type'] as String,
-      expiresIn: (json['expires_in'] as num).toDouble(),
+      expiresIn: (json['expires_in'] as num?)?.toDouble(),
       accessToken: json['access_token'] as String,
       refreshToken: json['refresh_token'] as String,
     );
