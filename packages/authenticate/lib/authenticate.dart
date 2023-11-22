@@ -1,7 +1,7 @@
 import 'package:authenticate/widgets/create_account_panel.dart';
 import 'package:authenticate/widgets/forgot_password_panel.dart';
 import 'package:authenticate/widgets/language_picker_panel.dart';
-import 'package:authenticate/widgets/login_panel.dart';
+import 'package:authenticate/features/authorization/widgets/login_panel.dart';
 import 'package:authenticate/widgets/terms_privacy_panel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

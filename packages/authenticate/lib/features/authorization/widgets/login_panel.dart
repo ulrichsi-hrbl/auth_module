@@ -1,16 +1,16 @@
 import 'dart:io';
 
 import 'package:authenticate/const/date_formatter.dart';
-import 'package:authenticate/core/api/login_request.dart';
 import 'package:authenticate/features/authorization/controller/authentication_controller.dart';
 import 'package:authenticate/features/authorization/data/authorization.dart';
-import 'package:authenticate/widgets/logout_button.dart';
-import 'package:authenticate/widgets/renew_token_button.dart';
+import 'package:authenticate/features/authorization/widgets/logout_button.dart';
+import 'package:authenticate/features/authorization/widgets/renew_token_button.dart';
+import 'package:authenticate/features/authorization/widgets/token_remaining_time.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
-import '../features/authorization/repositories/auth_repository.dart';
+import '../repositories/auth_repository.dart';
 
 class LoginPanel extends ConsumerStatefulWidget {
   const LoginPanel({super.key});
@@ -119,25 +119,26 @@ class _LoginPanelState extends ConsumerState<LoginPanel> {
           final authorization =
               ref.watch(authorizationControllerProvider).authorization;
           if (authorization?.value != null) {
-            Duration remainingTime =
-                JwtDecoder.getRemainingTime(authorization!.value!.accessToken);
-            final dateFormatted = kFormatMinutesSeconds.format(
-                DateTime.fromMillisecondsSinceEpoch(
-                    remainingTime.inMilliseconds));
-            debugPrint('TOKEN dateFormatted ${dateFormatted}');
-
-            return Column(
+            return const Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text('accessToken remaining time ${dateFormatted}'),
-                const SizedBox(
+                TokenRemainingTime(),
+                SizedBox(
                   height: 40.0,
                 ),
-                const LogoutButton(),
+                LogoutButton(),
               ],
             );
           } else {
-            debugPrint('not ready yet');
+            return const Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  height: 40.0,
+                ),
+                Text('Not logged in'),
+              ],
+            );
           }
           return Container();
         }),
