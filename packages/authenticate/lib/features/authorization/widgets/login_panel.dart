@@ -127,6 +127,11 @@ class _LoginPanelState extends ConsumerState<LoginPanel> {
                   height: 40.0,
                 ),
                 LogoutButton(),
+                Divider(),
+                SizedBox(
+                  height: 20.0,
+                ),
+                RenewTokenButton(),
               ],
             );
           } else {
@@ -142,11 +147,6 @@ class _LoginPanelState extends ConsumerState<LoginPanel> {
           }
           return Container();
         }),
-        const Divider(),
-        const SizedBox(
-          height: 20.0,
-        ),
-        const RenewTokenButton(),
       ],
     );
   }
