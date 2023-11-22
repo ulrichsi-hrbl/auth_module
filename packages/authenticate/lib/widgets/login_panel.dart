@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:authenticate/const/date_formatter.dart';
 import 'package:authenticate/core/api/login_request.dart';
 import 'package:authenticate/features/authorization/controller/authentication_controller.dart';
 import 'package:authenticate/features/authorization/data/authorization.dart';
@@ -118,17 +119,17 @@ class _LoginPanelState extends ConsumerState<LoginPanel> {
           final authorization =
               ref.watch(authorizationControllerProvider).authorization;
           if (authorization?.value != null) {
-            Map<String, dynamic> accessToken =
-                JwtDecoder.decode(authorization!.value!.accessToken);
-            Map<String, dynamic> refreshToken =
-                JwtDecoder.decode(authorization!.value!.refreshToken);
             Duration remainingTime =
                 JwtDecoder.getRemainingTime(authorization!.value!.accessToken);
-            debugPrint('TOKEN remaining time ${accessToken.toString()}');
+            final dateFormatted = kFormatMinutesSeconds.format(
+                DateTime.fromMillisecondsSinceEpoch(
+                    remainingTime.inMilliseconds));
+            debugPrint('TOKEN dateFormatted ${dateFormatted}');
+
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text('accessToken remaining time ${remainingTime}'),
+                Text('accessToken remaining time ${dateFormatted}'),
                 const SizedBox(
                   height: 40.0,
                 ),
