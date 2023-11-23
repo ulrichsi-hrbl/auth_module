@@ -22,7 +22,7 @@ class Authenticate extends ConsumerWidget {
           backgroundColor: Colors.green,
           expandedHeight: 200.0,
           flexibleSpace: FlexibleSpaceBar(
-            background: Image.asset(imagePath, fit: BoxFit.cover),
+            background: Image.asset('packages/authenticate/assets/images/loginHeader.png', fit: BoxFit.cover),
           ),
         ),
         SliverList(
