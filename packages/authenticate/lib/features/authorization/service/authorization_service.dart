@@ -21,7 +21,6 @@ class DioAuthorizationService implements AuthorizationService {
   @override
   Future<UserState> logout() async {
     return _authRepository.logout();
-
   }
 
   @override

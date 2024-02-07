@@ -26,6 +26,8 @@ class DioAuthRepository implements AuthRepository {
   Future<UserState> login(String username, String password) async {
     final LoginRequest req =
         LoginRequest(username: username, password: password);
+
+    // AWAIT
     final Response response = await dioClient.post(Endpoints.loginURL, data: {
       'grant_type': req.grantType,
       'client_id': req.clientId,
