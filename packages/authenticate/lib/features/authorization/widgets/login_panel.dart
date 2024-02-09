@@ -1,16 +1,9 @@
-import 'dart:io';
-
-import 'package:authenticate/const/date_formatter.dart';
 import 'package:authenticate/features/authorization/controller/authentication_controller.dart';
-import 'package:authenticate/features/authorization/data/authorization.dart';
 import 'package:authenticate/features/authorization/widgets/logout_button.dart';
 import 'package:authenticate/features/authorization/widgets/renew_token_button.dart';
 import 'package:authenticate/features/authorization/widgets/token_remaining_time.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
-
-import '../repositories/auth_repository.dart';
 
 class LoginPanel extends ConsumerStatefulWidget {
   const LoginPanel({super.key});
@@ -93,7 +86,7 @@ class _LoginPanelState extends ConsumerState<LoginPanel> {
           child: ElevatedButton(
             onPressed: () async {
               //TODO: remove for better solution. Hacky.
-              FocusScope.of(context).requestFocus(new FocusNode());
+              FocusScope.of(context).requestFocus(FocusNode());
               await ref
                   .read(authorizationControllerProvider.notifier)
                   .login(email.text, password.text);

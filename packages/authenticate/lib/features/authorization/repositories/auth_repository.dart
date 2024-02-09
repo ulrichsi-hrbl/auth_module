@@ -64,8 +64,7 @@ class DioAuthRepository implements AuthRepository {
       options: Options(headers: dioOptions),
     );
     final authorization = Authorization.fromJson(response.data);
-    return UserState(
-        authorization: AsyncValue.data(authorization));
+    return UserState(authorization: AsyncValue.data(authorization));
   }
 
   @override
