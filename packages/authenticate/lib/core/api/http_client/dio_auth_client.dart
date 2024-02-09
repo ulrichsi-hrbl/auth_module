@@ -5,6 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final dioProvider = Provider<Dio>((ref) {
   return Dio(
-    BaseOptions(baseUrl: Endpoints.baseURL, headers: authHeaders),
+    BaseOptions(baseUrl: Endpoints.authBaseURL, headers: authHeaders),
   );
 });

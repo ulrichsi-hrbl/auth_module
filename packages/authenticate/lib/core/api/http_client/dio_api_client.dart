@@ -4,8 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final dioApiProvider = Provider.family<Dio, String>((ref, accessToken) {
-  final authHeaders = {...ApiHeaders, 'x-hluser-token': accessToken};
+  final authHeaders = {...apiHeaders, 'x-hluser-token': accessToken};
   return Dio(
-    BaseOptions(baseUrl: Endpoints.baseURL, headers: authHeaders),
+    BaseOptions(baseUrl: Endpoints.authBaseURL, headers: authHeaders),
   );
 });
